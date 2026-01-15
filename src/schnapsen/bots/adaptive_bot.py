@@ -1,4 +1,3 @@
-
 from schnapsen.game import Bot, Move, PlayerPerspective
 from schnapsen.game import RegularMove, TrumpExchange
 from schnapsen.deck import Card, Suit, Rank
@@ -6,7 +5,13 @@ from typing import Optional
 
 class AdaptiveBot(Bot):
     """
-    
+    This bot has two strategies, one two hold on to high-value cards,
+    and another to get rid of low-value cards. Which strategy is chosen
+    depends on the percentage of high-value cards currently in the bot's hand.
+    This percentage is set using the threshold variable.
+    Args:
+        threshold (float): Treshold of percentage of cards as to what strategy the bot employs (between 0 and 1)
+        name (Optional[str]): The optional name of this bot
     """
 
     def __init__(self, threshold: float, name: Optional[str] = None) -> None:

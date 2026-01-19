@@ -17,13 +17,13 @@ for threshold in thresholds:
         # Loop through opponent bots
     for opponent in opponents:
         opponent_name = opponent.__name__
-        aggressive_moves = 0
-        defensive_moves = 0
         with open(f"./data/{threshold}-{opponent_name}-results.csv", "w+", newline="") as results_file:
             writer = csv.writer(results_file)
             writer.writerow(["trial","opponent", "seed", "opponent_rng", "winner", "game_points", "score", "aggressive_moves", "defensive_moves"])
             # Use a loop to run 10 games
             for trial in range(1, trials + 1):
+                aggressive_moves = 0
+                defensive_moves = 0
                 seed = make_seed(opponent_name, trial)
                 game_rng = random.Random(seed)
                 opponent_rng = random.Random(seed + 1) # seed + 1 so they're not synchronized

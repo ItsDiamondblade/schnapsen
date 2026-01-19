@@ -17,6 +17,8 @@ class AdaptiveBot(Bot):
     def __init__(self, threshold: float, name: Optional[str] = None) -> None:
         super().__init__(name)
         self.threshold = threshold if (threshold > 0 and threshold < 1) else 0.5
+        self.aggressive_moves = 0
+        self.defensive_moves = 0
 
     def aggressive(self, valid_moves: list[Move], trumps: list[RegularMove], trump_suit: Suit, marriage_moves: list[Marriage]) -> Move: # plays high-value cards first
         regular_non_trump_moves = [move for move in valid_moves if move.is_regular_move() and move.cards[0].suit != trump_suit]
@@ -81,6 +83,9 @@ class AdaptiveBot(Bot):
                 high_value_moves.append(move)
 
         if len(high_value_moves) / len(perspective.get_hand()) >= self.threshold: # lots of high-value cards - want to preserve them
+            print(f"{len(high_value_moves) / len(perspective.get_hand())} >= {self.threshold}")
+            self.defensive_moves += 1
             return self.defensive(valid_moves, trumps, trump_suit, marriage_moves)
         else: # lots of low-value cards - want to expend them
+            self.aggressive_moves += 1
             return self.aggressive(valid_moves, trumps, trump_suit, marriage_moves)

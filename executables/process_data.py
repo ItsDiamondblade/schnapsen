@@ -38,6 +38,8 @@ for file in os.scandir("data/"): # scans 'data/' directory
             winner = row["winner"]
             game_points = int(row["game_points"])
             score = int(row["score"])
+            aggressive_moves = int(row["aggressive_moves"])
+            defensive_moves = int(row["defensive_moves"])
 
             if winner == "AdaptiveBot":
                 adaptivebot_points.append(game_points)
@@ -50,9 +52,10 @@ for file in os.scandir("data/"): # scans 'data/' directory
                 opponent_wins += 1
         
         pvalue = get_pvalue(adaptivebot_points, opponent_points)
-        winrate = (adaptivebot_wins / opponent_wins)
-        mean_score = mean(adaptivebot_score)
-        std_dev = stdev(adaptivebot_score)
+        winrate = (adaptivebot_wins / (adaptivebot_wins + opponent_wins))
+        mean_score = mean(adaptivebot_score) if adaptivebot_score else 0
+        std_dev = stdev(adaptivebot_score) if len(adaptivebot_score) > 1 else 0
+        move_ratio = aggressive_moves / defensive_moves
 
         # append results as dictionary inside of list
         results.append({
@@ -61,7 +64,8 @@ for file in os.scandir("data/"): # scans 'data/' directory
             "pvalue": round(pvalue, 5),
             "winrate": round(winrate, 3),
             "mean_score": round(mean_score, 3),
-            "std_dev": round(std_dev, 3)
+            "std_dev": round(std_dev, 3),
+            "a/d_move_ratio": round(move_ratio, 3)
             })
 
 # write to file

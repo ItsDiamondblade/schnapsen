@@ -14,12 +14,12 @@ def make_seed(opponent_name: str, trial: int): # makes seed so that it's the sam
 #running tests, writing to files
 for threshold in thresholds:
     adaptive_bot = AdaptiveBot(threshold, "AdaptiveBot")
-    with open(f"./data/{threshold}-results.csv", "w+", newline="") as results_file:
-        writer = csv.writer(results_file)
-        writer.writerow(["trial","opponent", "seed", "opponent_rng", "winner", "game_points", "score"])
         # Loop through opponent bots
-        for opponent in opponents:
-            opponent_name = opponent.__name__
+    for opponent in opponents:
+        opponent_name = opponent.__name__
+        with open(f"./data/{threshold}-{opponent_name}results.csv", "w+", newline="") as results_file:
+            writer = csv.writer(results_file)
+            writer.writerow(["trial","opponent", "seed", "opponent_rng", "winner", "game_points", "score"])
             # Use a loop to run 10 games
             for trial in range(1, trials + 1):
                 seed = make_seed(opponent_name, trial)
@@ -34,7 +34,7 @@ for threshold in thresholds:
                 # Run a game at each iteration of the loop and store the data
                 winner, game_points, score = engine.play_game(adaptive_bot, opponent_bot, game_rng)
                 writer.writerow([trial, opponent_name, seed, seed + 1, str(winner), game_points, score.direct_points])
-    print(f"Successfully wrote treshold: {threshold}")
+        print(f"Successfully wrote: {threshold}-{opponent_name}")
 
 # getting averages
 # with open(f"./data/summary.csv", "w+") as summary_file:

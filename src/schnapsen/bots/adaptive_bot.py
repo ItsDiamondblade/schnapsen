@@ -83,7 +83,6 @@ class AdaptiveBot(Bot):
                 high_value_moves.append(move)
 
         if len(high_value_moves) / len(perspective.get_hand()) >= self.threshold: # lots of high-value cards - want to preserve them
-            print(f"{len(high_value_moves) / len(perspective.get_hand())} >= {self.threshold}")
             self.defensive_moves += 1
             return self.defensive(valid_moves, trumps, trump_suit, marriage_moves)
         else: # lots of low-value cards - want to expend them

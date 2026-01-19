@@ -55,7 +55,7 @@ for file in os.scandir("data/"): # scans 'data/' directory
         winrate = (adaptivebot_wins / (adaptivebot_wins + opponent_wins))
         mean_score = mean(adaptivebot_score) if adaptivebot_score else 0
         std_dev = stdev(adaptivebot_score) if len(adaptivebot_score) > 1 else 0
-        move_ratio = aggressive_moves / defensive_moves
+        move_ratio = aggressive_moves / (aggressive_moves + defensive_moves)
 
         # append results as dictionary inside of list
         results.append({

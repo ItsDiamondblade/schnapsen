@@ -1,0 +1,11 @@
+trial,opponent,seed,opponent_rng,winner,game_points,score
+1,BullyBot,4043685969,4043685970,AdaptiveBot,1,68
+2,BullyBot,1416256803,1416256804,AdaptiveBot,1,69
+3,BullyBot,3183133820,3183133821,AdaptiveBot,1,86
+4,BullyBot,555704654,555704655,AdaptiveBot,2,76
+5,BullyBot,175098023,175098024,BullyBot,3,68
+6,BullyBot,4089458688,4089458689,AdaptiveBot,3,90
+7,BullyBot,3609513170,3609513171,BullyBot,3,70
+8,BullyBot,3228906539,3228906540,AdaptiveBot,1,57
+9,BullyBot,601477373,601477374,AdaptiveBot,1,68
+10,BullyBot,220870742,220870743,BullyBot,1,56

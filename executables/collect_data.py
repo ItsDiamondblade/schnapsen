@@ -2,9 +2,9 @@ from schnapsen.bots import AdaptiveBot, RandBot, BullyBot, RdeepBot
 from schnapsen.game import SchnapsenGamePlayEngine, Bot
 import random, csv
 
-thresholds: list[float] = [0, 0.5, 1]
+thresholds: list[float] = [0, 0.25, 0.5, 0.75, 1]
 opponents: list[Bot] = [RandBot, BullyBot, RdeepBot]
-trials = 10
+trials = 500
 
 engine = SchnapsenGamePlayEngine()
 

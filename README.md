@@ -74,6 +74,29 @@ python executables/server.py
 Now, open your webbrowser and type in the server address (i.e., http://127.0.0.1:8080). 
 By default, you are playing against RandBot. You can modify the code in executables/server.py to play against other bots.
 
+## Running tests
+
+To run experiment, run:
+```sh
+python executables/collect_data.py
+```
+Results are stored in ```data/```, with the naming format of ```threhsold-opponent-results.csv```.
+
+To change thresholds of Adaptive bot used in tests, change values in the ```thresholds``` list.
+
+To change the bots used in the tests, change ```opponents``` list with the desired bot classes, and add any additional parameters needed in the line:
+```python
+if opponent is ...:
+```
+
+## Processing data
+
+To process data obtained from running tests, run:
+```sh
+python executables/process_data.py
+```
+The processed output is stored in ```data/summary.csv```
+
 ## Implementing more bots
 
 You will find bot examples in the [`src/schnapsen/bots`](./src/schnapsen/bots) folder.
